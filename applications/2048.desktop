@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=2048
+Exec=/usr/share/APPLaunch/bin/M5CardputerZero-2048
+Terminal=false
+Icon=share/images/2048.png
+Type=Application
