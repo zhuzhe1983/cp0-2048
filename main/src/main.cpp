@@ -60,6 +60,7 @@ std::array<std::array<int, kBoardSize>, kBoardSize> g_board{};
 int g_score = 0;
 bool g_won_seen = false;
 bool g_goal_prompt_active = false;
+bool g_reset_confirm_active = false;
 uint32_t g_escape_first_tick = 0;
 uint32_t g_escape_last_tick = 0;
 int g_escape_repeat_count = 0;
@@ -494,8 +495,28 @@ void continue_after_goal()
     set_status("Keep going\nmake 4096");
 }
 
+void request_reset_confirmation()
+{
+    g_reset_confirm_active = true;
+    set_status("R again reset\nAny key cancel");
+}
+
+void cancel_reset_confirmation()
+{
+    if (!g_reset_confirm_active) return;
+    g_reset_confirm_active = false;
+    if (g_goal_prompt_active) {
+        set_status("2048 reached!\nEnter keep\nR restart");
+    } else if (!can_move()) {
+        set_status("Game over\nR restart");
+    } else {
+        set_status("WASD/FZXC\nmove tiles");
+    }
+}
+
 void toggle_sound_mute()
 {
+    g_reset_confirm_active = false;
     bool muted = !g_sound_muted.load();
     g_sound_muted.store(muted);
     set_status(muted ? "Sound off\nM unmute" : "Sound on\nM mute");
@@ -538,6 +559,7 @@ void reset_game()
     g_score = 0;
     g_won_seen = false;
     g_goal_prompt_active = false;
+    g_reset_confirm_active = false;
     add_random_tile();
     add_random_tile();
     set_status("WASD/FZXC\nmove tiles");
@@ -636,6 +658,10 @@ void build_ui()
         }
 
         if (key->key_code == KEY_ESC) {
+            if (g_reset_confirm_active) {
+                cancel_reset_confirmation();
+                return;
+            }
             handle_escape_key();
             return;
         }
@@ -646,11 +672,20 @@ void build_ui()
             return;
         }
 
+        if (g_reset_confirm_active) {
+            if (ch == 'r') {
+                reset_game();
+                return;
+            }
+            cancel_reset_confirmation();
+            return;
+        }
+
         if (g_goal_prompt_active) {
             if (key->key_code == KEY_ENTER || ch == '\r' || ch == ' ' || ch == 'y') {
                 continue_after_goal();
             } else if (ch == 'r' || ch == 'n') {
-                reset_game();
+                request_reset_confirmation();
             } else if (ch == 'q') {
                 request_quit();
             }
@@ -663,7 +698,7 @@ void build_ui()
         else if (key->key_code == KEY_DOWN || ch == 's' || ch == 'x') direction = 2;
         else if (key->key_code == KEY_LEFT || ch == 'a' || ch == 'z') direction = 3;
         else if (ch == 'q') request_quit();
-        else if (ch == 'r') reset_game();
+        else if (ch == 'r') request_reset_confirmation();
 
         if (direction >= 0 && can_move()) {
             bool had_won = has_won();

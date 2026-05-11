@@ -20,6 +20,7 @@ if "CardputerZero" in os.environ:
             f.write("CONFIG_V9_5_LV_DRAW_SW_ASM_NEON=y\n")
             f.write("CONFIG_V9_5_LV_USE_DRAW_SW_ASM=1\n")
             f.write("CONFIG_V9_5_LV_USE_EVDEV=y\n")
+            f.write("CONFIG_TINYALSA_COMPONENT_ENABLED=y\n")
             if has_homebrew_aarch64:
                 f.write(f'CONFIG_TOOLCHAIN_PATH="{homebrew_toolchain}"\n')
             f.write('CONFIG_TOOLCHAIN_PREFIX="aarch64-linux-gnu-"\n')
@@ -37,6 +38,7 @@ else:
             f.write("CONFIG_V9_5_LV_DRAW_SW_ASM_NEON=y\n")
             f.write("CONFIG_V9_5_LV_USE_DRAW_SW_ASM=1\n")
             f.write("CONFIG_V9_5_LV_USE_EVDEV=y\n")
+            f.write("CONFIG_TINYALSA_COMPONENT_ENABLED=y\n")
 
 local_path = Path(os.getcwd())
 sdk_path = local_path.parent.parent / "SDK"
