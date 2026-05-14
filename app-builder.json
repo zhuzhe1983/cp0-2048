@@ -1,0 +1,31 @@
+{
+  "name": "2048",
+  "package": "2048",
+  "package_name": "2048",
+  "version": "0.1.0",
+  "app_name": "2048",
+  "bin_name": "M5CardputerZero-2048",
+  "description": "Classic 2048 puzzle game for Cardputer Zero with keyboard controls and sound effects.",
+  "maintainer": "Zhu Zhe <zhuzhe1983@gmail.com>",
+  "homepage": "https://github.com/CardputerZero/2048",
+  "runtime": "legacy-deb-only",
+  "lvgl_version": "9.5",
+  "caps": ["keyboard", "audio"],
+  "store": {
+    "summary": "Classic 2048 puzzle game tuned for the Cardputer Zero keyboard.",
+    "categories": ["Games", "Puzzle"],
+    "license": "MIT",
+    "source_repo": "https://github.com/CardputerZero/2048",
+    "icon": "share/images/2048.png",
+    "screenshots": [
+      "store/screenshots/2048-start-320x170.png",
+      "store/screenshots/2048-midgame-320x170.png",
+      "store/screenshots/2048-win-320x170.png",
+      "store/screenshots/2048-gameover-320x170.png"
+    ],
+    "permissions": {
+      "keyboard_input": true,
+      "audio": true
+    }
+  }
+}

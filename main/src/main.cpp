@@ -566,6 +566,53 @@ void reset_game()
     update_ui();
 }
 
+void set_demo_board(const int values[kBoardSize][kBoardSize], int score, const char *status)
+{
+    for (int y = 0; y < kBoardSize; ++y) {
+        for (int x = 0; x < kBoardSize; ++x) {
+            g_board[y][x] = values[y][x];
+        }
+    }
+    g_score = score;
+    g_won_seen = false;
+    g_goal_prompt_active = false;
+    g_reset_confirm_active = false;
+    update_ui();
+    set_status(status);
+}
+
+void apply_demo_state()
+{
+    const char *state = std::getenv("M5_2048_DEMO_STATE");
+    if (!state || !state[0]) return;
+
+    if (std::strcmp(state, "mid") == 0) {
+        const int board[kBoardSize][kBoardSize] = {
+            {2, 4, 8, 16},
+            {0, 32, 64, 128},
+            {2, 0, 256, 512},
+            {4, 8, 16, 0},
+        };
+        set_demo_board(board, 1236, "Plan merge\nkeep space");
+    } else if (std::strcmp(state, "win") == 0) {
+        const int board[kBoardSize][kBoardSize] = {
+            {2, 4, 8, 16},
+            {32, 64, 128, 256},
+            {512, 1024, 2048, 4},
+            {0, 2, 4, 8},
+        };
+        set_demo_board(board, 24576, "2048 reached!\nEnter keep");
+    } else if (std::strcmp(state, "gameover") == 0) {
+        const int board[kBoardSize][kBoardSize] = {
+            {2, 4, 2, 4},
+            {4, 2, 4, 2},
+            {8, 16, 8, 16},
+            {16, 8, 16, 8},
+        };
+        set_demo_board(board, 8172, "Game over\nR restart");
+    }
+}
+
 void handle_escape_key()
 {
     uint32_t now = lv_tick_get();
@@ -834,6 +881,7 @@ int main()
     LV_EVENT_KEYBOARD = lv_event_register_id();
     lv_linux_indev_init();
     build_ui();
+    apply_demo_state();
 
     while (!g_quit_requested) {
         lv_timer_handler();

@@ -2,6 +2,7 @@
 /build/
 /dist/
 /static_lib
+/artifacts/
 
 # SCons generated files
 .sconsign.dblite

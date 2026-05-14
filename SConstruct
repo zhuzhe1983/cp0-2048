@@ -41,7 +41,11 @@ else:
             f.write("CONFIG_TINYALSA_COMPONENT_ENABLED=y\n")
 
 local_path = Path(os.getcwd())
-sdk_path = local_path.parent.parent / "SDK"
+sdk_candidates = [
+    local_path.parent.parent / "SDK",
+    local_path.parent.parent / "Launcher" / "SDK",
+]
+sdk_path = next((path for path in sdk_candidates if path.exists()), sdk_candidates[0])
 os.environ["SDK_PATH"] = str(sdk_path)
 os.environ["EXT_COMPONENTS_PATH"] = str(sdk_path.parent / "ext_components")
 
