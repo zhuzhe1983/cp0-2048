@@ -1,6 +1,6 @@
 # CardputerZero 2048
 
-LVGL-based 2048 game for M5Stack Cardputer Zero.
+LVGL-based 2048 game for M5Stack CardputerZero.
 
 ## Repository Layout
 
