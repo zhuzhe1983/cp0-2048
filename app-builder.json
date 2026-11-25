@@ -2,20 +2,34 @@
   "name": "2048",
   "package": "2048",
   "package_name": "2048",
-  "version": "0.1.0",
+  "version": "0.1.0-m5stack1",
   "app_name": "2048",
   "bin_name": "M5CardputerZero-2048",
   "description": "Classic 2048 puzzle game for CardputerZero with keyboard controls and sound effects.",
-  "maintainer": "Zhu Zhe <zhuzhe1983@gmail.com>",
-  "homepage": "https://github.com/CardputerZero/2048",
+  "maintainer": "Zhu Zhe <1917345+zhuzhe1983@users.noreply.github.com>",
+  "homepage": "https://github.com/zhuzhe1983/cp0-2048",
   "runtime": "legacy-deb-only",
   "lvgl_version": "9.5",
   "caps": ["keyboard", "audio"],
   "store": {
     "summary": "Classic 2048 puzzle game tuned for the CardputerZero keyboard.",
-    "categories": ["Games", "Puzzle"],
+    "description": "Merge matching tiles on a 4 x 4 board and reach 2048. Built for the CardputerZero 320 x 170 display, with a live score, tile sounds, restart confirmation and continued play after reaching the goal.\n\nControls: F/Z/X/C or W/A/S/D move the tiles; arrow keys are also supported. Press R, then R again to restart; Esc cancels the restart prompt. M toggles sound. Hold Esc or press Q to quit.\n\nRuns offline using the built-in keyboard, display and speaker. No additional hardware is required.",
+    "locales": {
+      "zh-CN": {
+        "summary": "为 CardputerZero 键盘优化的经典 2048 益智游戏。"
+      },
+      "ja": {
+        "summary": "CardputerZero のキーボードで遊ぶ定番の 2048 パズル。"
+      }
+    },
+    "categories": ["Games"],
+    "author": {
+      "display_name": "Zhu Zhe",
+      "github": "zhuzhe1983"
+    },
     "license": "MIT",
-    "source_repo": "https://github.com/CardputerZero/2048",
+    "share_code": "2048",
+    "source_repo": "https://github.com/zhuzhe1983/cp0-2048",
     "icon": "share/images/2048.png",
     "screenshots": [
       "store/screenshots/2048-start-320x170.png",
@@ -24,8 +38,13 @@
       "store/screenshots/2048-gameover-320x170.png"
     ],
     "permissions": {
-      "keyboard_input": true,
-      "audio": true
+      "camera": false,
+      "microphone": false,
+      "imu": false,
+      "network": false,
+      "additional_hardware": false,
+      "background_service": false,
+      "external_display": false
     }
   }
 }
