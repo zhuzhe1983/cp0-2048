@@ -54,7 +54,7 @@ Portal: <https://dev.cardputer.cc/#/upload>
 - [x] User explicitly requested external submission and supplied the signed-in browser.
 - [x] Updated package passes portal preflight; server accepted the web submission.
 - [x] Real-device installation, ARM64 binary checksum, runtime libraries, framebuffer launch, keyboard movement, restart prompt/cancel and long-Esc exit verified; APPLaunch restored active.
-- [ ] User-recorded physical-device video attached to the resulting PR.
+- [x] User-recorded physical-device video attached to the resulting PR and visually checked for launch, gameplay and exit.
 
 ## Device Installation
 
@@ -65,7 +65,7 @@ Portal: <https://dev.cardputer.cc/#/upload>
 
 ## Submission Result
 
-- Status: `publish PR created; automated checks passed; awaiting physical-device video and maintainer review`
+- Status: `publish PR created; automated checks passed; real-device video attached and checked; awaiting maintainer review`
 - Submission observed at: 2026-11-25T20:21:50+08:00
 - Portal message: Submitted; server is performing final validation and will create a publish PR after it passes.
 - Successful validation workflow: <https://github.com/CardputerZero/packages/actions/runs/45614052011>
@@ -77,8 +77,12 @@ Portal: <https://dev.cardputer.cc/#/upload>
 - Generated metadata timestamps: `published_at=2026-11-25T12:28:27+00:00`, `updated_at=2026-11-25T12:28:27+00:00`. These are registry metadata values, not evidence that review or deployment completed.
 - First attempt: <https://github.com/CardputerZero/packages/issues/818> reported missing store icon. The package icon passed local/browser checks, but did not populate the separate store icon. Corrected before the successful submission.
 - Stage verification: successful workflow executed `Create publish PR`; `Report failure to the submitter` was skipped. PR remains open and unmerged.
-- Review requirement: the official submission guide requires a physical-device video showing launch, main functionality and exit. User will record the video after installation.
-- New applications require maintainer review; a successful upload is not yet store availability.
+- Physical-device video comment: <https://github.com/CardputerZero/packages/pull/819#issuecomment-7162522898>
+- Original video: <https://github.com/user-attachments/assets/afd84945-5431-48e1-8b44-be0553a28422>
+- Local original: `artifacts/publish-20261125/physical-demo-original.mp4` (15.033 seconds, 1280 x 720 HEVC video, 48 kHz AAC audio). Original retained intact.
+- Visual verification: launcher and 2048 selection at the start; app launch by approximately 3 seconds; keyboard moves and score increases during gameplay; long Esc around 13 seconds; launcher restored by approximately 14 seconds. Fifteen timeline frames were inspected across the full recording.
+- Final remaining step: store maintainer review and merge, followed by catalog deployment. The PR was still open and unmerged when checked.
+- New applications require maintainer review; upload, automated-check success and video attachment do not by themselves establish live store availability.
 
 ## Skill Maintenance
 
