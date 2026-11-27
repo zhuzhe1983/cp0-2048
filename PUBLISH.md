@@ -92,3 +92,17 @@ Portal: <https://dev.cardputer.cc/#/upload>
 - Corrected package-helper revision consistency, root archive ownership and explicit runtime-dependency support.
 - Validation: both skills pass `quick_validate.py`; real 2048 package passes strict preflight; legacy metadata and five invalid listing cases were rejected; both package-version forms produced correct archives.
 - The skill repository already contained unrelated uncommitted typography/launcher-contract changes. They were preserved, and the skill work remains uncommitted for review.
+
+## Reinstalled device check — 2026-11-27
+
+The frozen `0.1.0-m5stack1` submission was reinstalled after the operating
+system reflash. The package and installed executable SHA-256 values match
+the release above. APPLaunch displayed the icon, launched the game as
+UID1000, and actual 320×170 framebuffer captures showed gameplay and
+keyboard movement. Long Esc returned to the active user launcher. No
+application source or gameplay rules changed for this reinstall.
+
+Pre-install backup: `/home/pi/2048-backups/20261127T123623Z` (no previous
+2048 package or user configuration). Device framebuffer captures are smoke
+check evidence; they are not a newly recorded physical-device video. The
+previous review-video record remains unchanged.
